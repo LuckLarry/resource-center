@@ -1,0 +1,31 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+  <%= form_for(@site_sku) do |f| %>
+    <% if @site_sku.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@site_sku.errors.count, "error") %> prohibited this site_sku from being saved:</h2>
+
+        <ul>
+        <% @site_sku.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-4 form-group field">
+        <%= f.label :site_id %><br>
+        <%= f.text_field :site_id,class: 'form-control' %>
+      </div>
+      <div class="col-md-4 form-group field">
+        <%= f.label :sku %><br>
+        <%= f.text_field :sku,class: 'form-control' %>
+      </div>
+    </div>
+    <div class="row" style="margin-top:20px;margin-left:20px;">
+      <div class="actions">
+        <%= f.submit "确定",class: 'btn btn-default' %>
+        <%= link_to '返回', site_skus_path,class: 'btn btn-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

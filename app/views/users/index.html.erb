@@ -1,0 +1,46 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+  <div class="col-md-12 col-xs-12 mt20">
+    <div class="tab-content">
+      <div class="tab-pane active" id="ceramic">
+        <div class="col-md-12 col-xs-12 mt20">
+          <%= link_to '新增用户', new_user_path,class: 'creat' %>
+        </div>
+        <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+          <table style="width:100%;">
+            <thead>
+              <tr>
+                <th class="col-md-2 text-center col-xs-2">员工编号</th>
+                <th class="col-md-2 text-center col-xs-2">员工姓名</th>
+                <th class="col-md-2 text-center col-xs-2">手机号码</th>
+                <th class="col-md-2 text-center col-xs-2">加密密码</th>
+                <th class="col-md-1 text-center col-xs-1">是否是管理员</th>
+                <th class="col-md-3 text-center col-xs-3">操作</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.employee_number %></td>
+                  <td><%= user.name %></td>
+                  <td><%= user.mobile %></td>
+                  <td><%= user.password_digest %></td>
+                  <% if user.admin %>
+                  <td>是</td>
+                  <% else %>
+                  <td>否</td>
+                  <% end %>
+                  <td><%= link_to '查看', user ,class: 'text-center'%>&nbsp;&nbsp;<%= link_to '编辑', edit_user_path(user) ,class: 'text-center'%>&nbsp;&nbsp;<%= link_to '删除', user, method: :delete, data: { confirm: '真的要删除资料吗?' } ,class: 'text-center'%></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>  
+
+  <%= link_to 'New User', new_user_path %>
+  <%= link_to '退出', logout_path, method: :delete %>
+

@@ -1,0 +1,33 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Skus</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Level</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @skus.each do |sku| %>
+      <tr>
+        <td><%= sku.product_id %></td>
+        <td><%= sku.level %></td>
+        <td><%= sku.name %></td>
+        <td><%= link_to 'Show', sku %></td>
+        <td><%= link_to 'Edit', edit_sku_path(sku) %></td>
+        <td><%= link_to 'Destroy', sku, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sku', new_sku_path %>
+</div>

@@ -1,0 +1,48 @@
+<style>
+	.col-md-2,.col-xs-2,.col-md-4,.col-xs-4{padding-left:5px;padding-right:5px;}
+</style>>
+<div class="container">
+	<div class="row h40"></div>
+	<div class="row text-center">
+		<div class="col-xs-12 col-md-12">
+			<img src='<%= image_url("com/fslola003.png") %>' alt="">
+			<h2>资源管理中心</h2>
+		</div>
+	</div>
+	<div class="row">
+	  <% if flash[:alert] %>
+	    <p id="notice" class="text-center"><%= flash[:alert] %></p>
+	  <% end %> 
+	  <%= form_tag do %>
+	    <fieldset>
+	      <div class="col-md-2 col-xs-2">
+	      	<img src='<%= image_url("com/login.jpg") %>' style="float:right;">
+	      </div>
+	      <div class="col-md-4 col-xs-4 ">
+	      	<div class="user h150">
+	        	<%= text_field_tag :employee_number, params[:employee_number], class: 'log_input',placeholder: '用户名' %>
+	        </div>
+	      </div>
+
+	      <div class="col-md-4 col-xs-4 ">
+	      	<div class="password h150">
+	        <%= password_field_tag :password, params[:password], class: 'log_input',placeholder: '密码' %>
+	        </div>
+	      </div>
+	      
+	      <div class="col-md-2 col-xs-2 h150">
+	      	<img src='<%= image_url("com/login2.jpg") %>' onclick="submit()">
+	        <%= submit_tag "Login" ,style: 'display:none',id: 'sub1'%>
+	      </div>
+	    </fieldset>
+	  <% end %>
+	</div>
+	<div class="row beian">
+		<p class="text-center">COPYRIGHT © 2013-2016 佛山市楼兰家居用品有限公司 版权所有  <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action">粤ICP备12034873号-6</a></p>
+	</div>
+</div>
+<script>
+	function userlogin(){
+		document.getElementById("sub1").click(); 
+	}
+</script>

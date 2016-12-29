@@ -1,0 +1,54 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mt5{margin-top:5px;}
+.mt20{margin-top:20px;}
+.mt40{margin-top:40px;}
+.mb20{margin-bottom:20px;}
+.ml10{margin-left:10px;}
+.line_h35{line-height:35px;}
+.line_h40{line-height:40px;}
+.line_h50{line-height:50px;}
+.pad0{padding:0}
+.fl{float:left;}
+.fr{float:right;}
+.bor_b{border-bottom:1px solid #ccc;}
+.w_40{width:40%;}
+.f24{font-size:24px;}
+.f16{font-size:16px;}
+.cur1{cursor:pointer;}
+.notice{position:relative;top:13px;text-align:center;border:1px solid #ccc; line-height:33px;background:#eeeeee;border-radius:4px;}
+.public .main_nav{background:#4a8bc2;position:fixed;left:0;right:0;z-index:200;}
+.public .main_nav h4{color:#fff;line-height:29px;}
+.public .main_nav h4 a{color:#fff;}
+.public .main_nav h4 a:hover{background-color:#4a8bc2;}
+.public .mar0{margin:0;}
+.public .pad0{padding:0;}
+.public .cont_left{position:fixed;left:0;right:0;z-index:200;background:#404040;height:100%;top:49px;}
+.public .cont_left ul{font-size:16px;line-height:50px;}
+.public .cont_left ul li{margin: 0 0 1px 0px;background:#505050;}
+.public .cont_left a{color:#fff;display:block;padding:0 10px;}
+.public .cont_left a:hover{background-color:#4a8bc2;text-decoration:none;}
+.cur{background:#404040;}
+.public .cont_left .right{float:right;line-height:50px;}
+
+.cont_right .ser_h{height:54px;padding-top:10px;margin-top:20px;}
+.cont_main{font-size:18px;line-height:60px;}
+.cont_main .padt10{padding-top:10px;}
+.th_h th{line-height:30px;background:#78909c;border:1px solid #bbbbbb;color:#fff;}
+
+.cont_right td{border:1px solid #bbbbbb;line-height:30px;}
+.cont_right td a:hover{background:#fff;}
+.cont_right .creat{padding:9px 10px;background-color:#ffa726;color:#fff;border-radius:4px;margin-left:10px;}
+.cont_right .pad_line{padding-right:0;line-height:30px;}
+.cont_right .md{float:left;width:20%;line-height:34px;text-align:center;}
+
+.masik{position:fixed;left:0;top:0;width:100%;height:100%;background-color:#000;opacity:0.5;z-index:600;display:none;}
+.masik_con ,.masik_pic{width:50%;margin:auto;background:#fff;border:1px solid #ccc;position:fixed;left:25%;top:30%;display:none;}
+.masik_con{z-index:400;}
+.masik_pic{z-index:800;}
+.close1,.close2{display:block;padding:0 15px;cursor:pointer;}
+
+.add_show{float:right;padding:0 5px;border:1px solid #ccc;}
+.sub_show{float:right;padding:0 7px;border:1px solid #ccc;display:none;}

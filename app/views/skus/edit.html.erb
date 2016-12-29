@@ -1,0 +1,516 @@
+<% if params[:type] != "site_sku" %>
+  <%= form_for @sku do |f| %> 
+    <% if @sku.name %>
+      <%= f.fields_for :product_images do |p| %>
+        <% if  p.object.product_image_category_id == 1 %>
+          <div class="row">
+            <div class="col-md-12 form-group field">
+              <div class="col-md-5"> 
+                <label style="margin-left: 83%">
+                  <% if p.object.product_image_category_id !=nil %>
+                      <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                  <% else %>
+                    <span>正面图</span>
+                  <% end %>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <%#= p.file_field :image_file %>
+                <%= p.file_field :image_file %>
+                <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                <%= p.hidden_field :position, value: p.object.position %>
+              </div>
+              <% if p and p.object.image_id != nil  %>
+                <div class="col-md-3" style="margin-left: -15%" >
+                  <input type="button" name="yulan" value="预览" onclick="show('<%= p.object.image.image.url %>')"  >
+                  <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                </div>
+              <% end %>
+            </div> 
+          </div>
+        <% end %>
+      <% end %>
+      <div id="d" ></div>
+      <div class="row">
+        <div class="col-md-12 form-group field" style="height:30px;">
+          <div class="col-md-5"> 
+            <label style="margin-left: 83%;line-height:40px;">
+              商品主图
+            </label>
+          </div>
+          <div class="col-md-4">
+            <span class="btn btn-default add">+</span>
+            <span class="btn btn-default sub" style="display:none;">-</span>
+            <span class="btn btn-success"  onclick="$('.zhutu').click();">批量上传</span>
+            <input type="file" multiple name="pic[]" style="position:relative;top:-30px;left:52px;display:none;" class="zhutu">
+          </div>
+        </div> 
+      </div>
+      <% @pro.each do |pro| %>
+        <%= f.fields_for :product_images do |p| %>
+          <% if  p.object.product_image_category_id > 1 and p.object.product_image_category_id < 15 %>
+            <% if p.object.product_image_category_id == pro.id %>
+              <div class="row con_na1" style="display:none;">
+                <div class="col-md-12 form-group field">
+                  <div class="col-md-5"> 
+                    <label style="margin-left: 85%">
+                      <% if p.object.product_image_category_id !=nil %>
+                          <%= pro.name %>
+                      <% else %>
+                        <span>正面图</span>
+                      <% end %>
+                    </label>
+                  </div>
+                  <div class="col-md-4">
+                    <%= p.file_field :image_file %>
+                    <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                    <%= p.hidden_field :position, value: p.object.position %>
+                  </div>
+                  <% if p and p.object.image_id != nil  %>
+                    <div class="col-md-3" style="margin-left: -15%" >
+                      <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                      <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                    </div>
+                    
+                  <% end %>
+                </div> 
+              </div>
+            <% end %>
+            <% elsif  p.object.product_image_category_id == 15 %>
+              <% if p.object.product_image_category_id == pro.id %>
+                <div class="row">
+                  <div class="col-md-12 form-group field">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%">
+                        <% if p.object.product_image_category_id !=nil %>
+                            <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                        <% else %>
+                          <span>正面图</span>
+                        <% end %>
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <%= p.file_field :image_file %>
+                      <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                      <%= p.hidden_field :position, value: p.object.position %>
+                    </div>
+                    <% if p and p.object.image_id != nil  %>
+                      <div class="col-md-3" style="margin-left: -15%" >
+                        <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                      <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                      </div>
+                    <% end %>
+                  </div> 
+                </div>
+                <div id="d" ></div>
+                <div class="row">
+                  <div class="col-md-12 form-group field" style="height:30px;">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%;line-height:40px;">
+                        PC产品情景图
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="btn btn-default add1">+</span>
+                      <span class="btn btn-default sub1" style="display:none;">-</span>
+                      <span class="btn btn-success"  onclick="$('.PCtu').click();">批量上传</span>
+                      <input type="file" multiple name="pc[]" style="position:relative;top:-30px;left:52px;display:none;" class="PCtu">
+                    </div>
+                  </div> 
+                </div>
+              <% end %>
+            <% elsif  p.object.product_image_category_id == 17 %>
+              <% if p.object.product_image_category_id == pro.id %>
+                <div class="row">
+                  <div class="col-md-12 form-group field">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%">
+                        <% if p.object.product_image_category_id !=nil %>
+                            <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                        <% else %>
+                          <span>正面图</span>
+                        <% end %>
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <%= p.file_field :image_file %>
+                      <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                      <%= p.hidden_field :position, value: p.object.position %>
+                    </div>
+                    <% if p and p.object.image_id != nil  %>
+                      <div class="col-md-3" style="margin-left: -15%" >
+                        <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                      <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                      </div>
+                    <% end %>
+                  </div> 
+                </div>
+                <div id="d" ></div>
+                <div class="row">
+                  <div class="col-md-12 form-group field" style="height:30px;">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%;line-height:40px;">
+                        PC产品细节图
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="btn btn-default add2">+</span>
+                      <span class="btn btn-default sub2" style="display:none;">-</span>
+                      <span class="btn btn-success"  onclick="$('.PCxijie').click();">批量上传</span>
+                      <input type="file" multiple name="pcx[]" style="position:relative;top:-30px;left:52px;display:none;" class="PCxijie">
+                    </div>
+                  </div> 
+                </div>
+              <% end %>
+              <% elsif  p.object.product_image_category_id == 21 %>
+              <% if p.object.product_image_category_id == pro.id %>
+                <div class="row">
+                  <div class="col-md-12 form-group field">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%">
+                        <% if p.object.product_image_category_id !=nil %>
+                            <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                        <% else %>
+                          <span>正面图</span>
+                        <% end %>
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <%= p.file_field :image_file %>
+                      <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                      <%= p.hidden_field :position, value: p.object.position %>
+                    </div>
+                    <% if p and p.object.image_id != nil  %>
+                      <div class="col-md-3" style="margin-left: -15%" >
+                        <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                      <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                      </div>
+                    <% end %>
+                  </div> 
+                </div>
+                <div id="d" ></div>
+                <div class="row">
+                  <div class="col-md-12 form-group field" style="height:30px;">
+                    <div class="col-md-5"> 
+                      <label style="margin-left: 83%;line-height:40px;">
+                        产品铺贴图
+                      </label>
+                    </div>
+                    <div class="col-md-4">
+                      <span class="btn btn-default add3">+</span>
+                      <span class="btn btn-default sub3" style="display:none;">-</span>
+                      <span class="btn btn-success"  onclick="$('.ps').click();">批量上传</span>
+                      <input type="file" multiple name="ps[]" style="position:relative;top:-30px;left:52px;display:none;" class="ps">
+                    </div>
+                  </div> 
+                </div>
+              <% end %>
+              
+
+          <% elsif p.object.product_image_category_id == 16 or p.object.product_image_category_id == 26 or p.object.product_image_category_id == 27 %>
+          <% if p.object.product_image_category_id == pro.id %>
+            <div class="row pc"  style="display:none;">
+              <div class="col-md-12 form-group field">
+                <div class="col-md-5"> 
+                  <label style="margin-left: 85%">
+                    <% if p.object.product_image_category_id !=nil %>
+                        <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                    <% else %>
+                      <span>正面图</span>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <%= p.file_field :image_file %>
+                  <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                  <%= p.hidden_field :position, value: p.object.position %>
+                </div>
+                <% if p and p.object.image_id != nil  %>
+                  <div class="col-md-3" style="margin-left: -15%" >
+                    <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                    <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                  </div>
+                <% end %>
+              </div> 
+            </div>
+          <% end %>
+
+          <% elsif p.object.product_image_category_id == 18 or p.object.product_image_category_id == 28 or p.object.product_image_category_id == 29 or p.object.product_image_category_id == 30 %>
+          <% if p.object.product_image_category_id == pro.id %>
+            <div class="row pcxijie"  style="display:none;">
+              <div class="col-md-12 form-group field">
+                <div class="col-md-5"> 
+                  <label style="margin-left: 85%">
+                    <% if p.object.product_image_category_id !=nil %>
+                        <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                    <% else %>
+                      <span>正面图</span>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <%= p.file_field :image_file %>
+                  <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                  <%= p.hidden_field :position, value: p.object.position %>
+                </div>
+                <% if p and p.object.image_id != nil  %>
+                  <div class="col-md-3" style="margin-left: -15%" >
+                    <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                    <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                  </div>
+                <% end %>
+              </div> 
+            </div>
+          <% end %>
+          <% elsif p.object.product_image_category_id == 1 or p.object.product_image_category_id == 25 %>
+          <% elsif p.object.product_image_category_id == 22 or p.object.product_image_category_id == 31 %>
+          <% if p.object.product_image_category_id == pro.id %>
+            <div class="row pst"  style="display:none;">
+              <div class="col-md-12 form-group field">
+                <div class="col-md-5"> 
+                  <label style="margin-left: 85%">
+                    <% if p.object.product_image_category_id !=nil %>
+                        <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                    <% else %>
+                      <span>正面图</span>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <%= p.file_field :image_file %>
+                  <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                  <%= p.hidden_field :position, value: p.object.position %>
+                </div>
+                <% if p and p.object.image_id != nil  %>
+                  <div class="col-md-3" style="margin-left: -15%" >
+                    <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                    <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                  </div>
+                <% end %>
+              </div> 
+            </div>
+          <% end %>
+
+
+          <% else%>
+            <% if p.object.product_image_category_id == pro.id %>
+            <div class="row" >
+              <div class="col-md-12 form-group field">
+                <div class="col-md-5"> 
+                  <label style="margin-left: 83%">
+                    <% if p.object.product_image_category_id !=nil %>
+                        <%= ProductImageCategory.find(p.object.product_image_category_id).name %>
+                    <% else %>
+                      <span>正面图</span>
+                    <% end %>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <%= p.file_field :image_file %>
+                  <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+                  <%= p.hidden_field :position, value: p.object.position %>
+                </div>
+                <% if p and p.object.image_id != nil  %>
+                  <div class="col-md-3" style="margin-left: -15%" >
+                    <input type="button" name="yulan" value="预览" class="look" onclick="show('<%= p.object.image.image.url %>')"  >
+                    <!--span class="btn btn-warning pre fl feihuiyuan">预览</span>-->
+                  </div>
+                <% end %>
+              </div> 
+            </div>
+          <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <div class="row subm" style="margin-left: 45%">
+        <%= f.submit "确定" %> 
+      </div>
+    <% end %>
+  <% end %>
+<script type="text/javascript">
+  $(".add").click(function(){
+    $(".sub").show();
+    $(".add").hide();
+    $(".con_na1").show();
+  })
+  $(".sub").click(function(){
+    $(".add").show();
+    $(".sub").hide();
+    $(".con_na1").hide();
+  })
+   $(".add1").click(function(){
+    $(".sub1").show();
+    $(".add1").hide();
+    $(".pc").show();
+  })
+     $(".sub1").click(function(){
+    $(".add1").show();
+    $(".sub1").hide();
+    $(".pc").hide();
+  })
+    $(".add2").click(function(){
+    $(".sub2").show();
+    $(".add2").hide();
+    $(".pcxijie").show();
+  })
+     $(".sub2").click(function(){
+    $(".add2").show();
+    $(".sub2").hide();
+    $(".pcxijie").hide();
+  })
+    $(".add3").click(function(){
+    $(".sub3").show();
+    $(".add3").hide();
+    $(".pst").show();
+  })
+     $(".sub3").click(function(){
+    $(".add3").show();
+    $(".sub3").hide();
+    $(".pst").hide();
+  })
+</script>
+<script language='javascript'>   
+  function show(url){
+  document.getElementById("d").innerHTML=
+  "<div id='dd' >"+
+    "<div style='position:fixed;z-index:99; right:5px ;width:100% ;height:100%;text-align: center; background-color:#000; opacity:0.5;top:0%;'></div>"+
+     "<div style='position:fixed;z-index:99; right:5px ;width:100% ;height:100%;text-align: center;top:10%;'>"+
+       "<img src = "+url+" style='z-index:4;max-width:550px;max-heigth:450px;margin-top:25px'>"+
+     "</div>"+
+    "<div style='top:80%;position:fixed;z-index:99; right:5px ;width:100% ;height:100%;text-align: center;'>"+
+      "<input value='关闭' type='button' onclick=\"remov('dd')\" >"+
+    "</div>"+
+   "</div>";     
+  }   
+</script>
+<script type="text/javascript">
+  function remov(id){
+    document.getElementById(id).style.display="none";
+    var my = document.getElementById("id");
+      if (my != null) { 
+       my.parentNode.removeChild(my); 
+       } 
+    }
+</script>
+<% else %>
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <div class="col-md-2 col-xs-5 ser_h">
+      <input type="text" class="control" placeholder="输入你要查找的SKU">
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">产品类别</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <select class="form-control">
+          <option>全部</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-5 ser_h">
+      <input type="text" class="control" placeholder="输入你要查找的规格">
+    </div>
+    <div class="col-md-3 col-xs-6 ser_h">
+      <div class="col-md-3 col-xs-6 text-center line_h35">平台</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <%= select_tag :site_id, options_from_collection_for_select(Site.all, :id, :name, :include_blank => '请选择'),
+                                   {class: 'form-control'}
+          %>
+        </div>
+    </div>
+    <div class="col-md-1 col-xs-1 ser_h">
+      <input type="submit" value="搜索" class="btn btn-default" style="background:#78909c;color:#fff;">
+    </div>
+    <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:10px;">
+      <table style="width:100%;">
+        <thead>
+          <tr>
+            <th class="col-md-1 text-center col-xs-1">SKU</th>
+            <th class="col-md-1 text-center col-xs-1">图片</th>
+            <th class="col-md-1 text-center col-xs-1">产品类别</th>
+            <th class="col-md-1 text-center col-xs-1">规格</th>
+            <th class="col-md-2 text-center col-xs-2">平台</th>
+            <th class="col-md-1 text-center col-xs-1">操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @skus.each do |sku| %>
+            <%= form_tag("",method: "patch") do %>
+            <tr>
+              <td>
+                <%= sku.name %>-<%= sku.level%>
+              </td>
+              <td><img src='<%= image_url("com/add_img.jpg") %>' alt="" width="50%" ></td>
+              <% if sku.product_id != nil && Product.find(sku.product_id).product_category_id != nil %>
+                <td><%= ProductCategory.find(Product.find(sku.product_id).product_category_id).name %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <% if sku.product_id != nil && Product.find(sku.product_id).spec != nil %>
+                <td><%= Product.find(sku.product_id).spec %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <td>
+                <% Site.all.each do | mate | %>
+                  <% if SiteSku.where(site_id: mate.id,sku_id:sku.id) != [] %>
+                    <% @site_sku= SiteSku.where(site_id: mate.id,sku_id:sku.id).first  %>
+                    <%= check_box_tag("sku[site_id]", mate.id, @site_sku.selected,disabled: 'disabled') %>
+                    <%= label_tag(:age_child, mate.name) %><br>
+                  <% else %>
+                    <%= check_box_tag("sku[site_id]", mate.id, false,disabled: 'disabled') %>
+                    <%= label_tag(:age_child, mate.name) %><br>
+                  <% end %>
+
+                <% end %>
+              </td>
+              <td>
+                <input type="hidden" name="sku_id" value="<%= sku.id %>">
+                <input type="hidden" name="sku[selected]" value="true">
+                <%= link_to "编辑", edit_sku_path(sku,type: "site_sku"),class: 'form-control',style: 'width:50%;margin:auto;' %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>
+<div class="masik"></div>
+<div class="masik_pic f16">
+  <%= form_for @sku do |f| %>
+    <% if @sku.name %>
+      <div class="row" style="margin:0 15px;">
+          <div class="col-md-12 line_h50 f24 bor_b text-center">
+            <span>SKU:<%= @sku.name %>-<%= @sku.level %></span>
+          </div>
+      </div>
+      <div class="row text-left" style="margin:20px 30px;">
+        <% Site.all.each do |site| %>
+          <div class="col-md-3 col-xs-6">
+            <%= f.fields_for :site_skus do |site_sku| %>
+              <% if site.id == site_sku.object.site_id %>
+                <input type="checkbox" name="site_id[]" value="<%= site_sku.object.site_id %>" <% if site_sku.object.selected == true %>checked <% end %>  >
+                <input type="text" name="selected" value="false" hidden >
+                <%= label_tag(:age_child, site.name) %><br>
+              <% else %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row text-center mb20">
+        <div class="col-md-12 ">
+          <input type="text" name="type" hidden value="site_sku">
+          <%= f.submit "确定",class: 'btn btn-default' %>
+          <%= link_to '返回', site_skus_path,class: 'btn btn-default' %>
+        </div>
+      </div>
+</div>
+    <% end %>
+  <% end %>
+  <script>
+    $(".masik_pic").show();
+    $(".masik").show();
+  </script>
+
+<% end %>

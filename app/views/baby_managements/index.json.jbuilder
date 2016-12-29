@@ -1,0 +1,1 @@
+json.array! @baby_managements, partial: 'baby_managements/baby_management', as: :baby_management

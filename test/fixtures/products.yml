@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  product_category_id: 1
+  product_no: MyString
+  name: MyString
+  description: MyText
+  spec: MyString
+  brand: MyString
+  material: MyString
+  surface_craft: MyString
+  water_absrp_rate_id: 1
+  thickness: 9.99
+  shape_id: 1
+  color_id: 1
+  cases_per_pallet: 1
+  base_unit: MyString
+  unit_weight: 9.99
+  unit_area: 9.99
+  business_unit: MyString
+  packing_unit: MyString
+  package_weight: 9.99
+
+two:
+  product_category_id: 1
+  product_no: MyString
+  name: MyString
+  description: MyText
+  spec: MyString
+  brand: MyString
+  material: MyString
+  surface_craft: MyString
+  water_absrp_rate_id: 1
+  thickness: 9.99
+  shape_id: 1
+  color_id: 1
+  cases_per_pallet: 1
+  base_unit: MyString
+  unit_weight: 9.99
+  unit_area: 9.99
+  business_unit: MyString
+  packing_unit: MyString
+  package_weight: 9.99

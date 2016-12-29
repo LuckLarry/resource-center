@@ -1,0 +1,28 @@
+<div class="masik"></div>
+<div class="masik_pic f16">
+	<%= form_for(@product_image) do |f| %>
+		<div class="unstyled mt20 mb20">
+	 	  	<div class="row">
+		      <div class="col-md-12 form-group field">
+		        <div class="col-md-5"><%= f.label :"系列图",style: 'float:right;line-height:30px;' %></div>
+		        <div class="col-md-7">
+		      	    <%= f.file_field( :image_file) %>
+			        <%= f.hidden_field(:product_image_category_id, value: 18) %>
+			        <%= f.hidden_field(:product_id, value: params[:type]) %>
+		        </div>
+		      </div>
+		  	</div>
+		    
+		   	<div class="row">
+		     <div class="col-md-12 form-group field">
+                       <div class="col-md-12"><%= f.submit '确定',:class => "btn btn-default",:style => "margin-left:30%;" %><%= link_to '返回', series_images_path,class: 'btn btn-default ml10' %></div>
+		       <div class="col-md-8"></div>
+		     </div>
+		   	</div>
+       	</div>
+	<% end %>
+</div>
+<script>
+	$(".masik_pic").show();
+	$(".masik").show();
+</script>

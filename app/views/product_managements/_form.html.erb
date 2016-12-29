@@ -1,0 +1,43 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+  <%= form_for(@product_management) do |f| %>
+    <% if @product_management.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product_management.errors.count, "error") %> prohibited this product_management from being saved:</h2>
+
+        <ul>
+        <% @product_management.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-4 form-group field">
+        <%= f.label :sku %><br>
+        <%= f.text_field :sku,class: 'form-control' %>
+      </div>
+      <div class="col-md-4 form-group field">
+        <%= f.label :tag %><br>
+        <%= f.text_field :tag,class: 'form-control' %>
+      </div>
+      <div class="col-md-4 form-group field">
+        <%= f.label :position %><br>
+        <%= f.number_field :position,class: 'form-control' %>
+      </div>
+      <div class="col-md-4 form-group field">
+        <%= f.label :series %><br>
+        <%= f.text_field :position,class: 'form-control' %>
+      </div>
+      <div class="col-md-4 form-group field">
+        <%= f.label :image %><br>
+        <%= f.file_field :image_file,class: 'form-control',style: 'height:40px;' %>
+      </div>
+    </div>
+    <div class="row" style="margin-top:20px;margin-left:20px;">
+      <div class="actions">
+        <%= f.submit "确定",class: 'btn btn-default' %>
+        <%= link_to '返回', product_managements_path,class: 'btn btn-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

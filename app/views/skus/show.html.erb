@@ -1,0 +1,21 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @sku.product_id %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @sku.level %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sku.name %>
+</p>
+
+<%= link_to 'Edit', edit_sku_path(@sku) %> |
+<%= link_to 'Back', skus_path %>
+</div>

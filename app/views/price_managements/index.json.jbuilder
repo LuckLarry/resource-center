@@ -1,0 +1,1 @@
+json.array! @price_managements, partial: 'price_managements/price_management', as: :price_management

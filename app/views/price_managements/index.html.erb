@@ -1,0 +1,171 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <%= form_for @search, :url => "/price_managements/index" do |f| %>
+    <div class="col-md-2 col-xs-5 ser_h">
+      <%= f.text_field "product.product_no", class: 'form-control', placeholder: '输入你要查找的产品编号' %>
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <%= f.label :等级, class: 'col-md-6 col-xs-6 text-center line_h35' %>
+      <div class="col-md-6 col-xs-6 padt10">
+        <%= f.select "level", [['请选择',''],['AAA','A'],['一级品','B'],['合格品','C'],['四级品','D']], {}, class: 'form-control' %>
+      </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.label :平台, class: 'col-md-6 col-xs-6 text-center line_h35' %>
+        <div class="col-md-6 col-xs-6 padt10">
+          <%= select_tag(:platform,
+                      options_for_select([['请选择',''],['E选材',1],['E找砖',2],['E分销',3],['E出口',4],['家居网',5]]),
+                      {:class => 'form-control'}
+          )%>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.label :仓库, class: 'col-md-6 col-xs-6 text-center line_h35' %>
+        <div class="col-md-6 col-xs-6 padt10">
+          <%= select_tag "warehouse_id", options_from_collection_for_select(Warehouse.all, :id, :name, :include_blank => '请选择'),
+                         {class: 'form-control'}
+          %>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.label :面价, class: 'col-md-3 col-xs-6 text-center line_h35', style: 'padding:0;' %>
+        <div class="col-md-9 col-xs-6 padt10">
+          <input type="text" class="form-control pad0 fl" style="width:40%;" >
+          <span class="md">一</span>
+          <input type="text" class="form-control fr pad0" style="width:40%;" >
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.label :会员价, class: 'col-md-3 col-xs-6 text-center line_h35', style: 'padding:0;' %>
+        <div class="col-md-9 col-xs-6 padt10">
+          <input type="text" class="form-control pad0 fl" style="width:40%;" >
+          <span class="md">一</span>
+          <input type="text" class="form-control fr pad0" style="width:40%;" >
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.label :非会员价, class: 'col-md-4 col-xs-6 text-center line_h35', style: 'padding:0;' %>
+        <div class="col-md-8 col-xs-6 padt10">
+          <input type="text" class="form-control pad0 fl" style="width:40%;" >
+          <span class="md">一</span>
+          <input type="text" class="form-control fr pad0" style="width:40%;" >
+        </div>
+      </div>
+      <div class="col-md-1 col-xs-1 ser_h" style="background:#fff;">
+        <%= f.submit "搜索", class: "btn btn-default", style: 'background:#78909c;color:#fff;' %>
+      </div>
+    <% end %>
+    <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:10px;">
+      <table style="width:100%;">
+        <thead>
+          <tr>
+            <th class="col-md-2 text-center col-xs-2" rowspan="2">产品编号</th>
+            <th class="col-md-1 text-center col-xs-1" colspan="4">等级(单选)</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">平台</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">仓库</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">非会员</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">会员</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">价格单位</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">货币单位</th>
+            <th class="col-md-1 text-center col-xs-1" rowspan="2">操作</th>
+          </tr>
+          <tr>
+            <th class="col-md-1 text-center col-xs-1">AAA</th>
+            <th class="col-md-1 text-center col-xs-1">一级品</th>
+            <th class="col-md-1 text-center col-xs-1">合格品</th>
+            <th class="col-md-1 text-center col-xs-1">四级品</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @price_managements.each do |price_management| %>
+            <tr>
+              <td><%= price_management.product_no %></td>
+              <td><input type="radio" style="width:18px;height:18px;" disabled value="1" name="<%=price_management.id%>"
+                  <% if price_management.level == 'A' %> checked <% end %> >
+              </td>
+              <td><input type="radio" style="width:18px;height:18px;" disabled value="2" name="<%=price_management.id%>"
+                  <% if price_management.level == 'B' %> checked <% end %> >
+              </td>
+              <td><input type="radio" style="width:18px;height:18px;" disabled value="3" name="<%=price_management.id%>"
+                  <% if price_management.level == 'C' %> checked <% end %> >
+              </td>
+              <td><input type="radio" style="width:18px;height:18px;" disabled value="4" name="<%=price_management.id%>"
+                  <% if price_management.level == 'D' %> checked <% end %> >
+              </td>
+              <td><%= price_management.platform %></td>
+              <td><%= price_management.warehouse.try(:name) %></td>
+              <td><%= price_management.nomember_price %></td>
+              <td><%= price_management.member_price %></td>
+              <td><%= price_management.price_unit.try(:name) %></td>
+              <td><%= price_management.currency.try(:name) %></td>
+              <td><%= link_to '编辑', edit_price_management_path(price_management), class: 'text-center' %></td>
+            </tr>
+            <div class="text-center masik"></div>
+              <div class="masik_con f16">
+                <div class="row" style="margin:0 15px;">
+                  <div class="col-md-12 line_h50 f24 bor_b">
+                    <span class="<%= price_management.level %>">面价设置</span><span class="fr close1">x</span>
+                  </div>
+                </div>
+                <div class="row" style="margin:15px;color:#ccc;">
+                  <div class="col-md-12 text-left">产品编号:<%= price_management.level %></div>
+                  <div class="col-md-12" style="text-align:left;">平台:E选材</div>
+                </div>
+                <div class="row mt20 text-left" style="margin:15px;">
+                  <div class="col-md-12">
+                    选择仓库
+                  </div>
+                  <div class="col-md-12 checkbox"">
+                    <label>
+                      <input type="checkbox"> 深圳、南京、南京、杭州、福州、江阴、天津
+                    </label>
+                  </div>
+                  <div class="col-md-12 checkbox"">
+                    <label>
+                      <input type="checkbox"> 成都、重庆、上沙、武汉
+                    </label>
+                  </div>
+                  <div class="col-md-12 checkbox"">
+                    <label>
+                      <input type="checkbox"> 佛山
+                    </label>
+                  </div>
+                  <div class="col-md-12 checkbox"">
+                    <label>
+                      <input type="checkbox">海南
+                    </label>
+                  </div>
+                </div>
+                <div class="row mt20 text-left bor_b" style="margin:15px;">
+                  <div class="col-md-12">
+                    <div class="fl" style="line-height:30px;">设置价格:</div>
+                    <div class="col-md-2"><input type="text" value="2.5" class="form-control" /></div>
+                  </div>
+                  <div class="col-md-12" style="height:20px;"></div>
+                </div>
+                <div class="row mt20" style="margin:15px;">
+                  <button type="submit" class="btn btn-primary">确定</button>
+                </div>
+              </div>
+            
+          <% end %>
+        </tbody>
+      </table>
+      <%#= will_paginate @price_managements %>
+      </div>    
+    </div>
+    
+    <script>
+        $(".feihuiyuan").each(function(i,e){
+          $(this).click(function(){
+            //$(".masik").show();
+            $(".masik_con").show();
+          });
+        });
+        $(".close1").each(function(i,e){
+          $(this).click(function(){
+            $(".masik").hide();
+            $(".masik_con").hide();
+          })
+        });
+    </script>

@@ -1,0 +1,92 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <%= form_for @search, :url => "/skus/index" do |f| %>
+    <div class="col-md-2 col-xs-5 ser_h">
+      <%= f.text_field "product.product_no", class: 'form-control', placeholder: '输入你要查找的SKU' %>
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">产品类别</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <select class="form-control">
+          <option>全部</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-5 ser_h">
+      <%= f.text_field "product.spec", class: 'form-control', placeholder: '输入你要查找的规格' %>
+    </div>
+    <div class="col-md-3 col-xs-6 ser_h">
+      <div class="col-md-3 col-xs-6 text-center line_h35">平台</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <%= select_tag :site_id, options_from_collection_for_select(Site.all, :id, :name, :include_blank => '请选择'),
+                                   {class: 'form-control'}
+          %>
+        </div>
+    </div>
+    <div class="col-md-1 col-xs-1 ser_h">
+      <%= f.submit "搜索", class: "btn btn-default", style: 'background:#78909c;color:#fff;' %>
+    </div>
+    <% end %>
+    <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:10px;">
+      <table style="width:100%;">
+        <thead>
+          <tr>
+            <th class="col-md-1 text-center col-xs-1">SKU</th>
+            <th class="col-md-2 text-center col-xs-2">图片</th>
+            <th class="col-md-1 text-center col-xs-1">产品类别</th>
+            <th class="col-md-1 text-center col-xs-1">规格</th>
+            <th class="col-md-2 text-center col-xs-2">平台</th>
+            <th class="col-md-1 text-center col-xs-1">操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @skus.each do |sku| %>
+            <%= form_tag("/skus/update",method: "patch") do %>
+            <tr>
+              <td>
+                <%= sku.name %>
+              </td>
+              <td>
+                <div class="col-md-11" style="overflow:hidden;margin:17px;padding:0;max-height:300px;">
+                  <% if ProductImage.find_by_sku_id(sku.id) != nil %>
+                    <img src='<%= Image.find(ProductImage.find_by_sku_id(sku.id).image_id).image %>' width="100%">
+                  <% else %>
+                    <img src='<%= image_url("com/add_img.jpg") %>' alt="" width="100%" >
+                  <% end %>
+                </div>
+              </td>
+              <% if sku.product_id != nil && Product.find(sku.product_id).product_category_id != nil %>
+                <td><%= ProductCategory.find(Product.find(sku.product_id).product_category_id).name %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <% if sku.product_id != nil && Product.find(sku.product_id).spec != nil %>
+                <td><%= Product.find(sku.product_id).spec %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <td>
+                <% Site.all.each do | mate | %>
+                  <% if SiteSku.where(site_id: mate.id,sku_id:sku.id) != [] %>
+                    <% @site_sku= SiteSku.where(site_id: mate.id,sku_id:sku.id).first  %>
+                    <%= check_box_tag("sku[site_id]", mate.id, @site_sku.selected,disabled: 'disabled') %>
+                    <%= label_tag(:age_child, mate.name) %><br>
+                  <% else %>
+                    <%= check_box_tag("sku[site_id]", mate.id, false,disabled: 'disabled') %>
+                    <%= label_tag(:age_child, mate.name) %><br>
+                  <% end %>
+
+                <% end %>
+              </td>
+              <td>
+                <input type="hidden" name="sku_id" value="<%= sku.id %>">
+                <input type="hidden" name="sku[selected]" value="true">
+                <%= link_to "编辑", edit_sku_path(sku,type: "site_sku"),class: 'form-control',style: 'width:50%;margin:auto;' %>
+              </td>
+            </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>

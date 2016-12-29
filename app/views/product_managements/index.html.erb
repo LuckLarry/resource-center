@@ -1,0 +1,83 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;;">
+    <div class="col-md-2 col-xs-5 ser_h"><input type="text" class="form-control" placeholder="输入你要查找的SKU"></div>
+    <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">品类</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">类别</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">系列</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">规格</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+    <div class="col-md-1 col-xs-1 ser_h" style="background:#fff;"><button type="submit" class="btn btn-default" style="background:#78909c;color:#fff">搜索</button></div>
+    <div class="col-md-12 col-xs-12 mt20">
+      <%= link_to '新增产品', new_product_management_path,class: 'creat' %>
+    </div>
+    <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:10px;">
+      <table style="width:100%;">
+        <thead>
+          <tr>
+            <th class="col-md-1 text-center col-xs-1">SKU</th>
+            <th class="col-md-1 text-center col-xs-1">品类</th>
+            <th class="col-md-1 text-center col-xs-1">归类</th>
+            <th class="col-md-1 text-center col-xs-1">类别</th>
+            <th class="col-md-1 text-center col-xs-1">系列</th>
+            <th class="col-md-1 text-center col-xs-1">规格</th>
+            <th class="col-md-2 text-center col-xs-2">平台</th>
+            <th class="col-md-1 text-center col-xs-1">状态</th>
+            <th class="col-md-1 text-center col-xs-1">操作</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @product_managements.each do |product_management| %>
+            <tr>
+              <td><%= product_management.sku %></td>
+              <td>二类目录</td>
+              <td>二类目录</td>
+              <td>三类目录</td>
+              <td>四类目录</td>
+              <td>600*900</td>
+              <td>
+                <%= check_box_tag(:age, "1",{},disabled:"disabled") %>
+                <%= label_tag(:age_child, "E选材") %><br>
+                <%= check_box_tag(:age, "2", false,disabled:"disabled") %>
+                <%= label_tag(:age_child, "E找砖") %><br>
+                <%= check_box_tag(:age, "3",{},disabled:"disabled") %>
+                <%= label_tag(:age_child, "E分销") %><br>
+                <%= check_box_tag(:age, "4", false,disabled:"disabled") %>
+                <%= label_tag(:age_child, "E出口") %><br>
+                <%= check_box_tag(:age, "5",{},disabled:"disabled") %>
+                <%= label_tag(:age_child, "家居网") %><br>
+              </td>
+              <td style="color:red;">已上架</td>
+              <td style="color:blue;">下架</td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <br>
+    </div>

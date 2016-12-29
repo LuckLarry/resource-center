@@ -1,0 +1,236 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <%= form_tag products_path, :method => 'get' do %>
+    <div class="col-md-5 col-xs-5 ser_h">
+      <%= text_field_tag :product, params[:product], class: 'form-control', placeholder: "输入你要查找的产品编号或产品名称"%>
+    </div>
+    <div class="col-md-3 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">产品品类</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <%= select_tag(:category, 
+            options_for_select([['请选择',0],['瓷砖',1],['马赛克',2],['卫浴',3],['五金',4]]),{:class => 'form-control'}
+            )
+        %>
+      </div>
+    </div>
+    <div class="col-md-3 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">产品规格</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <%= text_field_tag :spec, params[:spec], class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col-md-1 col-xs-1 ser_h" style="background:#fff;">
+      <%= submit_tag "搜索", :name => nil, class: "btn btn-default", 
+                            style: "background:#78909c;color:#fff;"
+      %>
+    </div>
+    <% end %>
+
+    
+    <div class="col-md-12 col-xs-12 mt20">
+      <ul class="nav nav-tabs" id="myTab" style="font-size:18px;">
+        <li class="active"><a href="#ceramic">瓷砖</a></li>
+        <li><a href="#mosaic">马赛克</a></li>
+        <li><a href="#bathroom">卫浴</a></li>
+        <li><a href="#hardware">五金</a></li>
+        <li><a href="#furniture">家具</a></li>
+        <li><a href="#electrical_material">电工材料</a></li>
+        <li><a href="#pipe">管材</a></li>
+        <li><a href="#board">板材</a></li>
+        <li><a href="#wallpaper">墙纸</a></li>
+        <li><a href="#auxiliary_material">辅助材料</a></li>
+        <li><a href="#wood_floor">木地板</a></li>
+        <li><a href="#lighting">灯饰</a></li>
+        <li><a href="#doors_and_windows">门窗</a></li>
+        <li><a href="#ceiling">天花吊顶</a></li>
+        <li><a href="#electric_appliance">电器</a></li>
+        <li><a href="#cupboard">橱柜</a></li>
+        <li><a href="#paintcoating">油漆涂料</a></li>
+        <li><a href="#custom_wardrobe">订制衣柜</a></li>
+        <li><a href="#stone">石材</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="ceramic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增瓷砖', new_product_path(root_product_category_id: '1'),class: 'creat' %>
+          </div>
+          <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <% @title = ProductField.select('title').where(tabtype: 'ceramic') %>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @title.rewhere(position: '2').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @title.rewhere(position: '1').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @title.rewhere(position: '3').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @title.rewhere(position: '5').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-3 text-center col-xs-4">操作</th>
+                  <th class="col-md-2 text-center col-xs-4">添加价格</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @field = ProductField.select('field').where(tabtype: 'ceramic') %>
+                <% @products.each do |product| %>
+                  <tr>
+                    <td><%= product.send(@field.rewhere(position: '2').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= product.product_category.try(:name) %></td>
+                    <td><%= product.send(@field.rewhere(position: '3').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= product.send(@field.rewhere(position: '5').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= link_to '查看', product ,class: 'text-center'%>&nbsp;&nbsp;<%= link_to '编辑', edit_product_path(product) ,class: 'text-center'%>&nbsp;&nbsp;<%= link_to '删除', product, method: :delete, data: { confirm: '真的要删除资料吗?' } ,class: 'text-center'%></td>
+                    <td><%= link_to '添加', new_price_management_path(@price_management, product_no: product.product_no) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+            <%= will_paginate @products %> 
+          </div>
+        </div>
+        <div class="tab-pane" id="mosaic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增马赛克', new_product_path(root_product_category_id: '101'),class: 'creat' %>
+          </div>
+          <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <% @Title = ProductField.select('title').where(tabtype: 'mosaic') %>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @Title.rewhere(position: '2').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @Title.rewhere(position: '1').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @Title.rewhere(position: '3').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-2 text-center col-xs-2">
+                    <%= @Title.rewhere(position: '5').as_json(only: 'title')[0]['title'] %>
+                  </th>
+                  <th class="col-md-3 text-center col-xs-4">操作</th>
+                  <th class="col-md-2 text-center col-xs-4">添加价格</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @Field = ProductField.select('field').where(tabtype: 'mosaic') %>
+                <% @mosaic.each do |product| %>
+                  <tr>
+                    <td><%= product.send(@Field.rewhere(position: '2').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= product.product_category.try(:name) %></td>
+                    <td><%= product.send(@Field.rewhere(position: '3').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= product.send(@Field.rewhere(position: '5').as_json(only: 'field')[0]['field']) %></td>
+                    <td><%= link_to '查看', product ,class: 'text-center'%>&nbsp;&nbsp;<%= link_to '编辑', edit_product_path(product, root_product_category_id: '101'), class: 'text-center'%>&nbsp;&nbsp;<%= link_to '删除', product, method: :delete, data: { confirm: '真的要删除资料吗?' } ,class: 'text-center'%></td>
+                    <td><%= link_to '添加', new_price_management_path(@price_management, product_no: product.product_no) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+            <%#= will_paginate @mosaic %> 
+          </div>
+        </div>
+        <div class="tab-pane" id="bathroom">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增卫浴', new_product_path,class: 'creat' %>
+          </div>  
+        </div>
+        <div class="tab-pane" id="hardware">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增五金', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="furniture">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增家具', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="electrical_material">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增电工材料', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="pipe">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增管材', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="board">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增板材', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="wallpaper">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增墙纸', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="auxiliary_material">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增辅助材料', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="wood_floor">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增木地板', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="lighting">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增灯饰', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="doors_and_windows">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增门窗', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="ceiling">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增天花吊顶', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="electric_appliance">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增电器', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="cupboard">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增橱柜', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="paintcoating">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增油漆涂料', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="custom_wardrobe">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增订制衣柜', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="stone">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增石材', new_product_path,class: 'creat' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    $(function () {
+      $('#myTab a:first').tab('show');
+    })
+    $('#myTab a').click(function (e) {
+      e.preventDefault();
+    $(this).tab('show');
+  })
+  </script>

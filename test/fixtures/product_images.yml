@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  sku: MyString
+  tag: MyString
+  position: 1
+  image_id: 1
+
+two:
+  sku: MyString
+  tag: MyString
+  position: 1
+  image_id: 1

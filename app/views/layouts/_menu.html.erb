@@ -1,0 +1,60 @@
+  <div class="row">
+    <div class="col-md-1 col-xs-1 cont_left pad0">
+      <ul class="list-unstyled" id="menu">
+        <li>
+          <a data-toggle="collapse" data-parent="#accordion" 
+             href="#collapseOne">
+            商品录入<span class="glyphicon glyphicon-align-justify right"></span>
+          </a>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <ul style="padding-left:0;">
+              <li style="padding-left:0;"><a href="/products">非套裝</a></li>
+              <li style="padding-left:0;"><a>套裝</a></li>
+            </ul>
+          </div>
+        </li>
+        <% if params[:controller] == "product" || session[:employee_number] == "0200361" %>
+          <li><%= link_to '价格管理',price_managements_path %></li>
+        <% end %>
+        <% if params[:controller] == "product" || session[:employee_number] != "0200361" %>
+          <li><%= link_to '素材管理',product_images_path %></li>
+        <% end %>
+        <% if params[:controller] == "product" || session[:employee_number] != "0200361" %>
+          <li><%= link_to '商品管理',site_skus_path %></li>
+        <% end %>
+        <% if params[:controller] == "product" || session[:employee_number] != "0200361" %>
+          <li><%= link_to '宝贝管理',baby_managements_path %></li>
+        <% end %>
+        <% if params[:controller] == "product" || session[:employee_number] != "0200361" %>
+          <li><%= link_to '系列图管理',series_images_path %></li>
+        <% end %>
+        <% if params[:controller] == "users" || session[:employee_number] == "admin" %>
+          <li><%= link_to '用户管理',users_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  var urlstr = location.href;
+  //alert((urlstr + '/').indexOf($(this).attr('href')));
+  var urlstatus=false;
+  $("#menu a").each(function () {
+    if ((urlstr + '/').indexOf($(this).attr('href')) > -1&&$(this).attr('href')!='') {
+      $(this).addClass('cur'); urlstatus = true;
+    } else {
+      $(this).removeClass('cur');
+    }
+  });
+  if (!urlstatus) {$("#menu a").eq(0).addClass('cur'); }
+  $(function () { $('#collapseOne').collapse({
+    toggle: true
+  })});
+  $(function(){
+    $("#menu a").click(function(e){
+        /*切换折叠指示图标*/
+        $(this).find("span").toggleClass("glyphicon-chevron-down");
+        $(this).find("span").toggleClass("glyphicon-chevron-up");
+    });
+  });
+</script>

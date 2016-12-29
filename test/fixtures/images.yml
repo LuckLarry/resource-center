@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  md5: MyString
+  file_size: 1
+  filename: MyString
+  image: MyString
+
+two:
+  md5: MyString
+  file_size: 1
+  filename: MyString
+  image: MyString

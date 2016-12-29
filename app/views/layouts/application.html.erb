@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ResourceCenter</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:controller] %> public">
+	<% if params[:controller] != "sessions" %>
+		<%= render "layouts/header" %>
+		<%= render "layouts/menu" %>
+	<% end %>
+	<%= yield %>
+</body>
+</html>

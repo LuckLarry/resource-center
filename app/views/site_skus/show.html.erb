@@ -1,0 +1,20 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+	<%= form_for(@site_sku) do |f| %>
+	<div class="row">
+		<div class="col-md-4 form-group field">
+	      <%= f.label :site_id %><br>
+	      <%= f.text_field :site_id,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :sku %><br>
+	      <%= f.text_field :sku,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	</div>
+	<div class="row" style="margin-top:20px;margin-left:20px;">
+		<div class="actions">
+		<%= link_to '编辑', edit_site_sku_path(@site_sku),class: 'btn btn-default' %>
+		<%= link_to '返回', site_skus_path,class: 'btn btn-default' %>
+		</div>
+	</div>
+	<% end %>
+</div>

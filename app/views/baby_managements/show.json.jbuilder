@@ -1,0 +1,1 @@
+json.partial! "baby_managements/baby_management", baby_management: @baby_management

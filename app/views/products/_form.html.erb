@@ -1,0 +1,217 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+    <%= form_for(@product) do |f| %>
+      <% if @product.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+          <ul>
+            <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-4 field col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label :产品编号 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :product_no, class: 'form-control', placeholder: '必填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品名称 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :name, class: 'form-control', placeholder: '选填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品说明 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_area :description, rows: "5",class: 'form-control', placeholder: '选填',style: 'height:34px;' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label :产品规格 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :spec, class: 'form-control', placeholder: '必填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :品牌 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :brand, class: 'form-control', placeholder: '选填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :材质 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:material_id, f.object.root_product_category.materials, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :表面工艺 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:surface_craft_id, f.object.root_product_category.surface_crafts, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :吸水率 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.collection_select(:water_absrp_rate_id, WaterAbsrpRate.all, :id, :name,{:include_blank => '请选择'},class: 'form-control') %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <% if params[:root_product_category_id] != '101' %>
+            <div class="col-md-4 col-xs-4 pad_line"><%= f.label "厚度(mm)" %></div>
+          <% else %>
+            <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :shape_id, "粒子厚度(mm)" %></div>
+          <% end %>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :thickness, class: 'form-control', placeholder: '选填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <% if params[:root_product_category_id] != '101' %>
+            <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :shape_id, "形状" %></div>
+          <% else %>
+            <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :shape_id, "粒子形状" %></div>
+          <% end %>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:shape_id, f.object.root_product_category.shapes, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :color_id, "颜色" %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:color_id, Color.all, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label "打托数量(箱/托)" %></div>
+          <div class="col-md-8 col-xs-8"><%= f.number_field :cases_per_pallet,class: 'form-control', placeholder: '选填' %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label :基本单位 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:base_unit_id, f.object.root_product_category.base_units, :id, :name,{},class: 'form-control') %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label "单位重量(Kg)" %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :unit_weight,class: 'form-control', placeholder: '必填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label "单位面积(m*m)" %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :unit_area,class: 'form-control', placeholder: '选填' %></div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label :业务单位 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.collection_select(:business_unit_id, BusinessUnit.all, :id, :name,{},class: 'form-control') %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label "包装单位(片/箱)" %></div>
+          <div class="col-md-8 col-xs-8"><%= f.number_field :packing_unit,class: 'form-control', placeholder: '必填' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><%= f.label "包装重量(Kg)" %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :package_weight,class: 'form-control', placeholder: '必填' %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label "装边类型" %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.collection_select(:rim_category_id, RimCategory.all, :id, :name,{:include_blank => '请选择'},class: 'form-control') %></div>
+          </div>
+        </div>
+
+      <%= f.hidden_field(:product_category_id) %>
+
+      <div class="row" id="category_selects">
+      </div>
+
+      <script>
+        var category_names = <%= ProductCategory.all.inject(Hash.new){|h,c|h.merge(c.id => c.name)}.to_json.html_safe %>;
+        var children = <%= ProductCategory.all.inject(Hash.new){|h,c|h.merge(c.id => c.children.map(&:id))}.to_json.html_safe %>;
+        var parent = <%= ProductCategory.all.inject(Hash.new){|h,c|h.merge(c.id => c.parent_id)}.to_json.html_safe %>;
+
+        var queue = [];
+
+        function my_handle_node(node) {
+          $("#product_product_category_id").val(node);
+
+          my_clear(node);
+          my_append(node);
+        }
+
+        function my_clear(node) {
+          var prt = parent[node];
+          var pos = 0;
+          var i;
+          for(i = queue.length - 1; i > 0; i--) {
+            if(queue[i] == prt) {
+              pos = i;
+              break;
+            } 
+          }
+
+          var n;
+          for(i = queue.length - 1; i > pos; i--) {
+            n = queue[i];
+            $("#" + node_to_id(n)).remove();
+            queue.pop();
+          }
+        }
+
+        function create_select_string(sequence, node) {
+          var id = node_to_id(node);
+          var local_children = children[node];
+          if(local_children.length == 0) {
+            return "";
+          }
+     
+          var options = '<option value="">请选择...</option>';
+          var i;
+          for(i=0; i < local_children.length; i++) {
+            options = options + '<option value="' + local_children[i] + '">' + 
+                     category_names[local_children[i]] + '</option>';
+          }
+
+          var result = '<div class="field col-md-4 col-xs-12" id="' + id + '"><div class="col-md-4 col-xs-4 pad_line"><span style="color:red;">*</span><label>产品品类' + sequence + 
+                       '级</label></div><div class="col-md-8 col-xs-8"><select id="product_category_id_' + sequence + '" class="form-control" ' +
+                       'onChange="n=this.options[this.options.selectedIndex].value;my_handle_node(n);">' + 
+                       options + '</select></div></div>';
+          return result;
+        }
+
+        function node_to_id(node) {
+          return "my_append_" + node;
+        }
+
+        function my_append(node) {
+          queue.push(node);
+          var html_text = create_select_string(queue.length, node);
+          $("#category_selects").append(html_text);
+        }
+
+        var root_product_category_id = <%= @product.root_product_category_id %>;
+        my_append(root_product_category_id); // 1 is the ceramics, 101 is the mosaic
+
+        //
+        // to handle editing an existing product
+        //
+        var category_id = $("#product_product_category_id").val();
+        if(category_id != "") {
+          var local_queue = [];
+          while(category_id != null) {
+            local_queue.unshift(category_id);
+            category_id = parent[category_id]; 
+          }
+          for(i=0; i<local_queue.length; i++) {
+            var n1 = local_queue[i];
+            var n2 = local_queue[i+1];
+            if(n2 != null) {
+              $('#' + node_to_id(n1) + ' option[value="' + n2 + '"]').attr('selected', 'selected').parent().change();
+            }
+          }
+        }
+
+      </script>
+
+        <div class="actions" style="margin-top:20px;margin-left:20px;">
+          <%= f.hidden_field :root_product_category_id %>
+          <%= f.submit "确定",class: 'btn btn-default' %>
+          <%= link_to '返回', products_path,class: 'btn btn-default' %>
+        </div>
+      </div>
+    <% end %>

@@ -1,0 +1,2 @@
+module PriceManagementsHelper
+end

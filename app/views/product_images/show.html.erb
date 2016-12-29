@@ -1,0 +1,44 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+	<%= form_for(@product_image) do |f| %>
+	<div class="row">
+		<div class="col-md-4 form-group field">
+	      <%= f.label :Sku %><br>
+	      <%= f.text_field :sku,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :product_image_category_id %><br>
+	      <%= f.text_field :product_image_category_id,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :Position %><br>
+	      <%= f.text_field :position,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :series %><br>
+	      <%= f.text_field :series,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :size %><br>
+	      <%= f.text_field :size,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	      <%= f.label :Image %><br>
+	    <div class="col-md-4 form-group field">
+	      <% product_image = f.object.image_id %>
+              <% if product_image.blank? %>
+                <img  src='<%= image_url('com/register_04.jpg') %>' width="110" height="110" />
+              <% else %>
+                <%= image_tag f.object.image.image.url,  width: "110", height: "110" %>
+              <% end %>
+	      <%= f.file_field :image_file,class: 'form-control',style: 'height:40px; width:100px' %>
+	    </div>
+	</div>
+	<div class="row" style="margin-top:20px;margin-left:20px;">
+		<div class="actions">
+		<%= link_to '编辑', edit_product_image_path(@product_image),class: 'btn btn-default' %>
+		<%= link_to '返回', product_images_path,class: 'btn btn-default' %>
+		</div>
+	</div>
+	<% end %>
+</div>

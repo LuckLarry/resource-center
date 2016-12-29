@@ -1,0 +1,182 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <!-- 搜索區開始 --> 
+    <div class="col-md-2 col-xs-5 ser_h">
+      <input type="text" class="form-control" placeholder="输入你要查找的宝贝编号">
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+       <input type="text" class="form-control" placeholder="输入你要查找的SKU">
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">类别</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <select class="form-control">
+          <option>全部</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">系列</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <select class="form-control">
+          <option>全部</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-md-2 col-xs-6 ser_h">
+      <div class="col-md-6 col-xs-6 text-center line_h35">平台</div>
+      <div class="col-md-6 col-xs-6 padt10">
+        <select class="form-control">
+          <option>全部</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-md-1 col-xs-1 ser_h" style="background:#fff;">
+      <button type="submit" class="btn btn-default" style="background:#78909c;color:#fff">搜索</button>
+    </div>
+    <!-- 搜索區結束 -->  
+
+    <div class="col-md-12 col-xs-12 mt20">
+      <!-- 頁籤區開始 -->
+      <ul class="nav nav-tabs" id="tab" style="font-size:18px;">
+        <li class="active"><a href="#ceramic">家具网</a></li>
+        <li><a href="#mosaic">E直供</a></li>
+        <li><a href="#bathroom">E选材</a></li>
+        <li><a href="#hardware">E找砖</a></li>
+        <li><a href="#furniture">E分销</a></li>
+      </ul>
+      <!-- 頁籤區結束 -->
+
+      <div class="tab-content">
+        <!-- 家具网區開始 -->
+        <div class="tab-pane active" id="ceramic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增产品', new_baby_management_path, class: 'creat' %>
+          </div>
+          <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <th class="col-md-1 text-center col-xs-1">宝贝编号</th>
+                  <th class="col-md-1 text-center col-xs-1">SKU</th>
+                  <th class="col-md-1 text-center col-xs-1">品类</th>
+                  <th class="col-md-1 text-center col-xs-1">归类</th>
+                  <th class="col-md-1 text-center col-xs-1">类别</th>
+                  <th class="col-md-1 text-center col-xs-1">系列</th>
+                  <th class="col-md-1 text-center col-xs-1">平台</th>
+                  <th class="col-md-1 text-center col-xs-1">组合</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @baby_managements.each do |baby_management| %>
+                  <tr>
+                    <td><%= baby_management.baby_no %></td>
+                    <td><%= baby_management.sku %></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>  
+                      <span>
+                        <%= link_to '编辑', edit_baby_management_path(baby_management) %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+            <%#= will_paginate @products %> 
+          </div>
+        </div>
+        <!-- 家具网區結束 -->
+
+        <!-- E直供區開始 -->
+        <div class="tab-pane" id="mosaic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增马赛克', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E直供區結束 -->
+
+        <!-- E选材區開始 -->
+        <div class="tab-pane" id="bathroom">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增卫浴', new_product_path, class: 'creat' %>
+          </div>  
+        </div>
+        <!-- E选材區結束 -->
+
+        <!-- E找砖區開始 -->
+        <div class="tab-pane" id="hardware">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增五金', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E找砖區結束 -->
+
+        <!-- E分销區開始 -->
+        <div class="tab-pane" id="furniture">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增家具', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E分销區結束 -->
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 組合編輯彈出視窗開始 -->
+  <div class="masik"></div>
+  <div class="masik_pic f16">
+      <div class="row" style="margin:0 15px;">
+        <%= form_for @baby_management do |f| %>
+        <%#byebug%>
+          <div class="col-md-12 line_h50 f24 bor_b text-center">
+            <span>SKU:<%= @baby_management.sku %></span>
+          </div>
+        <% end %>
+      </div>
+      <%= form_tag("/baby_managements/edit", method: "patch") do %>      
+        <div class="row">
+          <div class="col-md-12 form-group field"> 
+            <div class="col-md-12 line_h50 f24 bor_b">
+              <span class="col-md-4">编辑宝贝编号:</span>
+              <span class="col-md-4" style="margin-top: 8px;">
+                <%= text_field_tag 'baby_no', nil, class: 'form-control' %>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 line_h50 f24 text-center th_h">
+            <input type="hidden" name="baby_id" value="<%= @baby_management.id %>">
+            <%= submit_tag('新增', class: 'btn btn-default') %>
+            <%= link_to '返回', baby_managements_path, class: 'btn btn-default' %>
+          </div>
+        </div> 
+      <% end %>
+  </div>
+  <!-- 組合編輯彈出視窗結束 -->
+
+  <!-- 控制組合編輯彈出視窗開始 -->
+  <script>
+    $(".masik_pic").show();
+    $(".masik").show();
+  </script>
+  <!-- 控制組合編輯彈出視窗開始 -->
+  
+  <!-- 控制頁籤切換開始 -->
+  <script>
+  $(function () {
+    $('#tab a:first').tab('show');
+  })
+
+  $('#tab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+  </script>
+  <!-- 控制頁籤切換結束 -->

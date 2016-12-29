@@ -1,0 +1,159 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <!-- 搜索區開始 --> 
+    <%= form_for @search, :url => "/baby_managements/index" do |f| %>
+      <div class="col-md-2 col-xs-5 ser_h">
+        <%= f.number_field "baby_no", class: 'form-control', placeholder: '输入你要查找的宝贝编号' %>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <%= f.text_field "sku", class: 'form-control', placeholder: '输入你要查找的SKU' %>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">类别</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">系列</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-2 col-xs-6 ser_h">
+        <div class="col-md-6 col-xs-6 text-center line_h35">平台</div>
+        <div class="col-md-6 col-xs-6 padt10">
+          <select class="form-control">
+            <option>全部</option>          
+          </select>
+        </div>
+      </div>
+      <div class="col-md-1 col-xs-1 ser_h" style="background:#fff;">
+        <button type="submit" class="btn btn-default" style="background:#78909c;color:#fff">搜索</button>
+      </div>
+    <% end %>
+    <!-- 搜索區結束 -->  
+
+    <div class="col-md-12 col-xs-12 mt20">
+      <!-- 頁籤區開始 -->
+      <ul class="nav nav-tabs" id="tab" style="font-size:18px;">
+        <li class="active"><a href="#ceramic">家居网</a></li>
+        <li><a href="#mosaic">E直供</a></li>
+        <li><a href="#bathroom">E选材</a></li>
+        <li><a href="#hardware">E找砖</a></li>
+        <li><a href="#furniture">E分销</a></li>
+      </ul>
+      <!-- 頁籤區結束 -->
+
+      <div class="tab-content">
+        <!-- 家具网區開始 -->
+        <div class="tab-pane active" id="ceramic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增产品', new_baby_management_path, class: 'creat' %>
+          </div>
+          <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <th class="col-md-1 text-center col-xs-1">宝贝编号</th>
+                  <th class="col-md-1 text-center col-xs-1">SKU</th>
+                  <th class="col-md-1 text-center col-xs-1">品类</th>
+                  <th class="col-md-1 text-center col-xs-1">归类</th>
+                  <th class="col-md-1 text-center col-xs-1">类别</th>
+                  <th class="col-md-1 text-center col-xs-1">系列</th>
+                  <th class="col-md-1 text-center col-xs-1">平台</th>
+                  <th class="col-md-1 text-center col-xs-1">组合</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @baby_managements.each do |baby_management| %>
+                  <tr>
+                    <td><%= baby_management.baby_no %></td>
+                    <td><%= baby_management.sku %></td>
+                    <% @parent = ProductCategory.find(Product.find(baby_management.product_id).product_category_id).id %>
+                    <% @child = ProductCategory.find(Product.find(baby_management.product_id).product_category_id).parent_id %>
+                    <% if @parent == 2 or @parent == 3 or @parent == 4 or @parent == 5 or
+                          @parent == 6 or @parent == 7 or @parent == 8 %>
+                      <td><%= Product.find(baby_management.product_id).product_category.try(:name) %></td>
+                    <% else %>
+                      <td></td>                      
+                    <% end %>
+                    <% if @child == 2 or @child == 3 or @child == 4 or @child == 6 or @child == 8 %>
+                      <td><%= Product.find(baby_management.product_id).product_category.try(:name) %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <% if @child == 9 or @child == 10 or @child == 11 or @child == 12 %>
+                      <td><%= Product.find(baby_management.product_id).product_category.try(:name) %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <td></td>
+                    <td><%= PriceManagement.find_by_product_id(baby_management.product_id).platform %></td>
+                    <td>  
+                      <span>
+                        <%= link_to '编辑', edit_baby_management_path(baby_management) %>
+                      </span>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+            <%#= will_paginate @products %> 
+          </div>
+        </div>
+        <!-- 家具网區結束 -->
+
+        <!-- E直供區開始 -->
+        <div class="tab-pane" id="mosaic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增马赛克', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E直供區結束 -->
+
+        <!-- E选材區開始 -->
+        <div class="tab-pane" id="bathroom">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增卫浴', new_product_path, class: 'creat' %>
+          </div>  
+        </div>
+        <!-- E选材區結束 -->
+
+        <!-- E找砖區開始 -->
+        <div class="tab-pane" id="hardware">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增五金', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E找砖區結束 -->
+
+        <!-- E分销區開始 -->
+        <div class="tab-pane" id="furniture">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%#= link_to '新增家具', new_product_path, class: 'creat' %>
+          </div>
+        </div>
+        <!-- E分销區結束 -->
+
+      </div>
+    </div>
+  </div>
+  
+  <!-- 控制頁籤切換開始 -->
+  <script>
+  $(function () {
+    $('#tab a:first').tab('show');
+  })
+
+  $('#tab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+  </script>
+  <!-- 控制頁籤切換結束 -->

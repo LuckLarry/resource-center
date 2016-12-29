@@ -1,0 +1,17 @@
+  <style>
+    #notice{position:relative;top:13px;text-align:center;border:1px solid #ccc; line-height:33px;background:#eeeeee;border-radius:4px;}
+  </style>
+  <div class="row main_nav mar0">
+    <div class="col-md-6 col-xs-6"><h4>资源管理中心</h4></div>
+    <div class="col-md-6 col-xs-6 text-right">
+      <h4><span class="glyphicon glyphicon-user"></span>&nbsp;<%= session[:employee_number] %>&nbsp;&nbsp;<span class="glyphicon glyphicon-log-out"></span>&nbsp;
+      	<%= link_to '退出',logout_path,method: :delete %>
+      </h4>
+    </div> 
+  </div>
+  <div style="height:49px;"></div>
+  <% if notice %>
+      <div class="col-md-11 col-xs-11" style="margin-left:8.3333333333%;">
+        <p id="notice" class="notice"><%= notice %></p>
+      </div>
+  <% end %>

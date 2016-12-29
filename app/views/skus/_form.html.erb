@@ -1,0 +1,26 @@
+<%= form_for(@sku) do |f| %>
+  <% if @sku.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sku.errors.count, "error") %> prohibited this sku from being saved:</h2>
+
+      <ul>
+      <% @sku.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.fields_for :product_images do |p| %>
+    <div style="margin-top: 17px;">
+      <%= p.object.product_image_category.name %>: <%= p.object.position %>
+      <%= p.file_field :image_file %>
+      <%= p.hidden_field :product_image_category_id, value: p.object.product_image_category_id %>
+      <%= p.hidden_field :position, value: p.object.position %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

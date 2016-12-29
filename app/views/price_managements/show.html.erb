@@ -1,0 +1,61 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+	<%= form_for(@price_management) do |f| %>
+	<div class="row">
+		<div class="col-md-4 col-xs-6 form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品编号 %></div>
+	      <div class="col-md-8 col-xs-8"><%= f.text_field :product_no, class: 'form-control',disabled: 'disabled'%></div>
+	    </div>
+	    <div class="col-md-4 col-xs-6  form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :等级 %></div>
+	      <div class="col-md-8 col-xs-8">
+	      	<% if @price_management.level == "A" %>
+	      		<%#= f.text_field :level,class: 'form-control',disabled: 'disabled'%>
+	      		<input type="text" name="" value="AAA" class="form-control" disabled >
+	      	<% elsif @price_management.level == "B" %>
+	      		<input type="text" name="" value="一级品" class="form-control" disabled >
+	      	<% elsif @price_management.level == "C" %>
+	      		<input type="text" name="" value="合格品" class="form-control" disabled >
+	      	<% elsif @price_management.level == "D" %>
+	      		<input type="text" name="" value="四级品" class="form-control" disabled >
+	      	<% end %>
+	      </div>
+	    </div>
+	    <div class="col-md-4 col-xs-6  form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :仓库 %></div>
+	      <div class="col-md-8 col-xs-8">
+          	<%= f.text_field :warehouse_id, value: Warehouse.find(@price_management.warehouse_id).name,class: 'form-control',disabled: 'disabled' %>
+          </div>
+	    </div>
+	    <div class="col-md-4 col-xs-6  form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :平台 %></div>
+	      <div class="col-md-8 col-xs-8"><%= f.text_field :platform,class: 'form-control',disabled: 'disabled'%></div>
+	    </div>
+	    <div class="col-md-4 col-xs-6  form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :非会员价 %></div>
+	      <div class="col-md-8 col-xs-8"><%= f.text_field :nomember_price,class: 'form-control',disabled: 'disabled'%></div>
+	    </div>
+	    <div class="col-md-4 col-xs-6  form-group field">
+	      <div class="col-md-4 col-xs-4 pad_line"><%= f.label :会员价 %></div>
+	      <div class="col-md-8 col-xs-8"><%= f.text_field :member_price,class: 'form-control',disabled: 'disabled'%></div>
+	    </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :价格单位 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.text_field :price_unit_id, value: f.object.price_unit.try(:name) ,class: 'form-control',disabled: 'disabled' %>
+        </div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :货币单位 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.text_field :currency_id, value: f.object.currency.try(:name) ,class: 'form-control',disabled: 'disabled' %>
+        </div>
+      </div>
+	</div>
+	<div class="row" style="margin-top:20px;margin-left:20px;">
+		<div class="actions">
+		<%= link_to '编辑', edit_price_management_path(@price_management),class: 'btn btn-default' %>
+		<%= link_to '返回', price_managements_path,class: 'btn btn-default' %>
+		</div>
+	</div>
+	<% end %>
+</div>

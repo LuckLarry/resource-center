@@ -1,0 +1,161 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;">
+    <div class="col-md-12 col-xs-12 mt20">
+      <ul class="nav nav-tabs" id="myTab" style="font-size:18px;">
+        <li class="active"><a href="#ceramic">瓷砖</a></li>
+        <li><a href="#mosaic">马赛克</a></li>
+        <li><a href="#bathroom">卫浴</a></li>
+        <li><a href="#hardware">五金</a></li>
+        <li><a href="#furniture">家具</a></li>
+        <li><a href="#electrical_material">电工材料</a></li>
+        <li><a href="#pipe">管材</a></li>
+        <li><a href="#board">板材</a></li>
+        <li><a href="#wallpaper">墙纸</a></li>
+        <li><a href="#auxiliary_material">辅助材料</a></li>
+        <li><a href="#wood_floor">木地板</a></li>
+        <li><a href="#lighting">灯饰</a></li>
+        <li><a href="#doors_and_windows">门窗</a></li>
+        <li><a href="#ceiling">天花吊顶</a></li>
+        <li><a href="#electric_appliance">电器</a></li>
+        <li><a href="#cupboard">橱柜</a></li>
+        <li><a href="#paintcoating">油漆涂料</a></li>
+        <li><a href="#custom_wardrobe">订制衣柜</a></li>
+        <li><a href="#stone">石材</a></li>
+
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="ceramic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增瓷砖图片', series_images_new_path(type: "1"),class: 'creat' %>
+          </div>
+          <div class="col-md-12 col-xs-12 text-center th_h" style="margin-top:20px;padding-left:0;padding-right:0;">
+            <table style="width:100%;">
+              <thead>
+                <tr>
+                  <th class="col-md-1 text-center col-xs-4">产品系列</th>
+                  <th class="col-md-3 text-center col-xs-8">图片</th>
+                  <th class="col-md-1 text-center col-xs-4">素材编辑</th>
+                </tr>
+              </thead>
+              <tbody>
+              <% @product_image=ProductImage.where(product_id: 1,product_image_category_id: 18 ) %>
+                <% if @product_image.empty? %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                <% else %>
+                  <td>瓷砖系列</td>
+                  <td>
+                    <div class="col-md-11" style="overflow:hidden;margin:17px;padding:0;max-height:300px;">
+                      <img src='<%=Image.find(@product_image.first.image_id).image.url %>'>
+                    </div>
+                  </td>
+                  <td><%= link_to '编辑瓷砖图片', series_images_new_path(type: "1"),class: 'btn btn-default' %></td>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="tab-pane" id="mosaic">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增马赛克图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="bathroom">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增卫浴图片', series_images_new_path,class: 'creat' %>
+          </div>  
+        </div>
+        <div class="tab-pane" id="hardware">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增五金图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="furniture">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增家具图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="electrical_material">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增电工材料图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="pipe">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增管材图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="board">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增板材图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="wallpaper">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增墙纸图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="auxiliary_material">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增辅助材料图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="wood_floor">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增木地板图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="lighting">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增灯饰图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="doors_and_windows">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增门窗图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="ceiling">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增天花吊顶图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="electric_appliance">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增电器图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="cupboard">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增橱柜图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="paintcoating">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增油漆涂料图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="custom_wardrobe">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增订制衣柜图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+        <div class="tab-pane" id="stone">
+          <div class="col-md-12 col-xs-12 mt20">
+            <%= link_to '新增石材图片', series_images_new_path,class: 'creat' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    $(function () {
+      $('#myTab a:first').tab('show');
+    })
+    $('#myTab a').click(function (e) {
+      e.preventDefault();
+    $(this).tab('show');
+  })
+  </script>

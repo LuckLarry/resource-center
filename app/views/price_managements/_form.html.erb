@@ -1,0 +1,71 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+  <%= form_for(@price_management) do |f| %>
+    <% if @price_management.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@price_management.errors.count, "error") %> prohibited this price_management from being saved:</h2>
+
+        <ul>
+        <% @price_management.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品编号 %></div>
+        <div class="col-md-8 col-xs-8"><%= f.text_field :product_no, class: 'form-control', disabled: 'disabled' %></div>
+        <%= f.hidden_field :product_id %>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :等级 %></div>
+        <div class="col-md-8 col-xs-8">
+          
+          <% if :product_no !=nil and f.object.level ==nil %>
+            <%= f.select :level, [ ['AAA','A'], ['一级品','B'], ['合格品','C'], ['四级品','D']],{:prompt => '等级选择'}, {:class => 'form-control'} %>
+          <% else %>
+            <%= f.select :level, [ ['AAA','A'], ['一级品','B'], ['合格品','C'], ['四级品','D']],{:prompt => '等级选择'}, {:disabled => 'disabled',:class => "form-control"} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :仓库 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.collection_select(:warehouse_id, Warehouse.all, :id, :name,{},class: 'form-control') %>
+        </div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :平台 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.select :platform, [ 'E选材', 'E找砖', 'E分销', 'E出口', '家居网' ],{:prompt => '平台选择'}, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :非会员价 %></div>
+        <div class="col-md-8 col-xs-8"><%= f.number_field :nomember_price, step: :any,class: 'form-control' %></div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :会员价 %></div>
+        <div class="col-md-8 col-xs-8"><%= f.number_field :member_price, step: :any,class: 'form-control' %></div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :价格单位 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.collection_select(:price_unit_id, PriceUnit.all, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+        </div>
+      </div>
+      <div class="col-md-4 field col-xs-12">
+        <div class="col-md-4 col-xs-4 pad_line"><%= f.label :货币单位 %></div>
+        <div class="col-md-8 col-xs-8">
+          <%= f.collection_select(:currency_id, Currency.all, :id, :name,{:include_blank => '请选择'},class: 'form-control') %>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:20px;margin-left:20px;">
+      <div class="actions">
+        <%= f.submit "确定",class: 'btn btn-default' %>
+        <%= link_to '返回', price_managements_path,class: 'btn btn-default' %>
+      </div>
+    </div>
+  <% end %>
+</div>

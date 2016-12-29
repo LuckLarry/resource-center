@@ -1,0 +1,2 @@
+json.extract! product, :id, :product_category_id, :product_no, :name, :description, :spec, :brand, :material, :surface_craft, :water_absrp_rate_id, :thickness, :shape_id, :color_id, :cases_per_pallet, :base_unit, :unit_weight, :unit_area, :business_unit, :packing_unit, :package_weight, :created_at, :updated_at
+json.url product_url(product, format: :json)

@@ -1,0 +1,24 @@
+<div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+	<%= form_for(@baby_management) do |f| %>
+	<div class="row">
+		<div class="col-md-4 form-group field">
+	      <%= f.label :Sku %><br>
+	      <%= f.text_field :sku,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%= f.label :Tag %><br>
+	      <%= f.text_field :tag,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	    <div class="col-md-4 form-group field">
+	      <%#= f.label :Position %><br>
+	      <%#= f.text_field :position,class: 'form-control',disabled: 'disabled'%>
+	    </div>
+	</div>
+	<div class="row" style="margin-top:20px;margin-left:20px;">
+		<div class="actions">
+		<%= link_to '编辑', edit_baby_management_path(@baby_management),class: 'btn btn-default' %>
+		<%= link_to '返回', baby_managements_path,class: 'btn btn-default' %>
+		</div>
+	</div>
+	<% end %>
+</div>

@@ -1,0 +1,1 @@
+json.array! @product_managements, partial: 'product_managements/product_management', as: :product_management

@@ -1,0 +1,110 @@
+  <div class="col-md-11 col-xs-11 cont_right" style="margin-left:8.3333333333%;margin-top:20px;">
+    <%= form_for(@product) do |f| %>
+      <div class="row">
+        <div class="col-md-4 field col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品编号 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :product_no,class: 'form-control',disabled: 'disabled'%></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品名称 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :name,class: 'form-control',disabled: 'disabled'%></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品说明 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_area :description, rows: "5",class: 'form-control',disabled: 'disabled',style: 'height:34px;' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品规格 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :spec,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :品牌 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :brand,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :材质 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.text_field :material_id, value: f.object.material.try(:name),class: 'form-control',disabled: 'disabled' %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :表面工艺 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.text_field :surface_craft_id, value: f.object.surface_craft.try(:name),class: 'form-control',disabled: 'disabled' %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :吸水率 %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.text_field :water_absrp_rate_id, value: f.object.water_absrp_rate.try(:name),class: 'form-control',disabled: 'disabled' %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :厚度 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :thickness,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :shape_id, "形状" %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.text_field :shape_id, value: f.object.shape.try(:name),class: 'form-control',disabled: 'disabled' %>
+          </div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= label_tag :color_id, "颜色" %></div>
+          <div class="col-md-8 col-xs-8">
+            <%= f.text_field :color_id, value: f.object.color.try(:name),class: 'form-control',disabled: 'disabled' %>
+          </div>
+        </div>
+        <div class="filed col-md-4">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :打托数量 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.number_field :cases_per_pallet,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :基本单位 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :base_unit_id, value: BaseUnit.find(@product.base_unit_id).name,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :单位重量 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :unit_weight,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :单位面积 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :unit_area,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :业务单位 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :business_unit_id, value: BusinessUnit.find(@product.business_unit_id).name,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :包装单位 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :packing_unit,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :包装重量 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :package_weight,class: 'form-control',disabled: 'disabled' %></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field col-md-4 col-xs-12">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :装边类型 %></div>
+           <div class="col-md-8 col-xs-8">
+            <%= f.text_field :rim_category_id, value: f.object.rim_category.try(:name),
+                class: 'form-control',disabled: 'disabled' %>
+           </div>
+        </div>
+      </div>
+      <div class="row mt40">
+        <div class="col-md-4 form-group field">
+          <div class="col-md-4 col-xs-4 pad_line"><%= f.label :产品品类 %></div>
+          <div class="col-md-8 col-xs-8"><%= f.text_field :product_category_id, value: @product.product_category.try(:name), class: 'form-control', disabled: 'disabled'%></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:20px;margin-left:20px;">
+      <div class="actions">
+        <%= link_to '编辑', edit_product_path(@product),class: 'btn btn-default' %>
+        <%= link_to '返回', products_path,class: 'btn btn-default' %>
+      </div>
+      </div>
+    <% end %>

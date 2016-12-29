@@ -1,0 +1,120 @@
+	      <%= form_tag("/product_image/new",method:"post") do  %>
+		<div class="unstyled">
+	 	  <div class="row">
+		      <div class="col-md-12 form-group field">
+		        <div class="col-md-4"><%= label_tag(:image,"商品正面图", style: 'margin-left:80%') %></div>
+		        <div class="col-md-8">
+	      	          <%= file_field_tag( :image) %>
+		          <%= hidden_field_tag(:product_image_category_id, value: 1) %>
+		        </div>
+		      </div>
+		  </div>
+		  <div class="row">
+		      <div class="col-md-12 form-group field">
+			<div class="col-md-4"> <%= label_tag(:image,"商品主图", style: 'margin-left:80%') %></div>
+		        <div class="col-md-8">
+	      	          <%= file_field_tag( :image) %>
+		          <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		        </div>
+		      </div>
+		  </div>
+		  <div class="row">
+		      <div class="col-md-12 form-group field">
+			
+		        <div class="col-md-4"><%= label_tag(:image,"商品视频", style: 'margin-left:80%') %></div>
+		        <div class="col-md-8">
+	      	          <%= file_field_tag( :image) %>
+		          <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		        </div>
+		      </div>
+		  </div>
+		  <div class="row">
+		      <div class="col-md-12 form-group field">
+		        <div class="col-md-4"><%= label_tag(:image,"PC商品情景图", style: 'margin-left:76%') %></div>
+		        <div class="col-md-8">
+	      	          <%= file_field_tag( :image) %>
+		          <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		        </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-12 form-group field">
+		          <div class="col-md-4"><%= label_tag(:image,"PC商品实拍图", style: 'margin-left:76%') %></div>
+		          <div class="col-md-8">
+	      	            <%= file_field_tag( :image) %>
+		            <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-12 form-group field">
+		          <div class="col-md-4"> <%= label_tag(:image,"PC商品细节图", style: 'margin-left:76%') %></div>
+		          <div class="col-md-8">
+	      	            <%= file_field_tag( :image) %>
+		            <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-12 form-group field">
+		          <div class="col-md-4"> <%= label_tag(:image,"手机商品情景图", style: 'margin-left:76%') %></div>
+		          <div class="col-md-8">
+	      	            <%= file_field_tag( :image) %>
+		            <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		        </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-12 form-group field">
+		          <div class="col-md-4"> <%= label_tag(:image,"手机商品细节图", style: 'margin-left:76%') %></div>
+		          <div class="col-md-8">
+	      	            <%= file_field_tag( :image) %>
+		            <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-12 form-group field">
+		          <div class="col-md-4"><%= label_tag(:image,"商品铺贴图", style: 'margin-left:80%') %></div>
+		          <div class="col-md-8">
+	      	            <%= file_field_tag( :image) %>
+		            <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		          </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		      <div class="col-md-12 form-group field">
+		        <div class="col-md-4"><%= label_tag(:image,"外贸PC详情页", style: 'margin-left:76%') %></div>
+		        <div class="col-md-8">
+	      	          <%= file_field_tag( :image) %>
+		          <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		        </div>
+		       </div>
+		   </div>
+		   <div class="row">
+		       <div class="col-md-12 form-group field">
+		         <div class="col-md-4"><%= label_tag(:image,"外贸手机详情页", style: 'margin-left:76%') %></div>
+		         <div class="col-md-8">
+	      	           <%= file_field_tag( :image) %>
+		           <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		         </div>
+		       </div>
+	           </div>
+		   <div class="row">
+		       <div class="col-md-12 form-group field">
+		         <div class="col-md-4"><%= label_tag(:image,"外贸手机详情页", style: 'margin-left:76%') %></div>
+		         <div class="col-md-8">
+	      	           <%= file_field_tag( :image) %>
+		           <%= hidden_field_tag(:product_image_category_id, value: 2) %>
+		         </div>
+		       </div>
+	           </div>
+		   <div class="row">
+		     <div class="col-md-12 form-group field">
+                       <div class="col-md-4"><label style="margin-left:100%"><%= submit_tag('确定') %></label></div>
+		       <div class="col-md-8"></div>
+		     </div>
+		   </div>
+	         </div>
+	       </div>
+	     <% end %>
